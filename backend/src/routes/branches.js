@@ -1,5 +1,5 @@
 import express from "express"
-import branchesController from "../controller/branchesController.js";
+import branchesController from "../controllers/branchesController.js";
 
 //Router() nos ayuda a colocar los métodos
 //que tendrá mi endpoint
