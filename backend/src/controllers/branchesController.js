@@ -1,16 +1,13 @@
-const branchesController = {};
-//importo el Schema de la colleción que voy a ocupar
-
 import branchesModel from "../models/branches.js";
 
 //SELECT
-branchesController.getBranches = async (req, res) => {
+export const getBranches = async (req, res) => {
   const branches = await branchesModel.find();
   res.json(branches);
 };
 
 //INSERT
-branchesController.insertBranches = async (req, res) => {
+ export const insertBranches = async (req, res) => {
   const { name, address, schedule, isActive } = req.body;
   const newBranch = new branchesModel({ name, address, schedule, isActive });
   await newBranch.save();
@@ -18,7 +15,7 @@ branchesController.insertBranches = async (req, res) => {
 };
 
 //UPDATE
-branchesController.updateBranches = async (req, res) => {
+export const updateBranches = async (req, res) => {
   const { name, address, schedule, isActive } = req.body;
   await branchesModel.findByIdAndUpdate(
     req.params.id,
@@ -35,9 +32,9 @@ branchesController.updateBranches = async (req, res) => {
 };
 
 //DELETE
-branchesController.deleteBranches = async (req, res) => {
+export const  deleteBranches = async (req, res) => {
   await branchesModel.findByIdAndDelete(req.params.id);
   res.json({ message: "branch deleted" });
 };
 
-export default branchesController;
+

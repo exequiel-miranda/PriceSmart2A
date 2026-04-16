@@ -1,6 +1,7 @@
 import express from "express";
 import brandController from "../controllers/brandsController.js";
 
+
 //Ocupo Router() para asignar los métodos
 const router = express.Router();
 
