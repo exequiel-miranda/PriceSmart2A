@@ -22,7 +22,7 @@ app.use("/api/employees", employeesRoutes);
 app.use("/api/brands", brandRoutes);
 app.use("/api/customers", customerRoutes);
 app.use("/api/registerCustomers", registerCustomerRoutes);
-app.use("/api/loginCustomer", loginCustomerRoutes);
+app.use("/api/login", loginCustomerRoutes);
 app.use("/api/logout", logoutRoutes)
 
 export default app;

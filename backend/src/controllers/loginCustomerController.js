@@ -66,11 +66,12 @@ loginCustomerController.login = async (req, res) => {
     res.cookie("authCookie", token);
 
     //Listo!
-    return res.status(200).json({ message: "Login exitoso" });
+    return res.status(200).json({message: "Login exitoso"})
   } catch (error) {
-    console.log("error" + error);
-    return res.status(500).json({ message: "Internal server error" });
+    console.log("error"+error)
+    return res.status(500).json({message: "Internal server error"})
   }
 };
 
-export default loginCustomerController;
+
+export default loginCustomerController
