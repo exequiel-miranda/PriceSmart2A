@@ -73,5 +73,4 @@ loginCustomerController.login = async (req, res) => {
   }
 };
 
-
 export default loginCustomerController

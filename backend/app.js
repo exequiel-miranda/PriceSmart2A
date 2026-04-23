@@ -26,3 +26,4 @@ app.use("/api/login", loginCustomerRoutes);
 app.use("/api/logout", logoutRoutes)
 
 export default app;
+
