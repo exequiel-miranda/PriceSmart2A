@@ -9,8 +9,15 @@ import cookieParser from "cookie-parser";
 import loginCustomerRoutes from "./src/routes/loginCustomer.js";
 import logoutRoutes from "./src/routes/logout.js";
 import recoveryPasswordRoutes from "./src/routes/recoveryPassword.js";
+import cors from "cors";
 
 const app = express();
+
+app.use(cors({
+    origin: ["http://localhost:5173", "http://localhost:5174"],
+    // permitir el envio de cookies y credenciales
+    credentials: true
+}))
 
 app.use(cookieParser());
 

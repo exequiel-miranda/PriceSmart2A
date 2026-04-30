@@ -7,6 +7,7 @@ import HTMLRecoveryEmail from "../utils/sendMailRecoveryPassword.js";
 import { config } from "../config.js";
 
 import customerModel from "../models/customers.js";
+import teachersModel from "../models/teachers.js"
 
 //Array de funciones
 const recoveryPasswordController = {};
@@ -19,6 +20,18 @@ recoveryPasswordController.requestCode = async (req, res) => {
     //Validar que el correo si esté en la BD
     const userFound = await customerModel.findOne({ email });
 
+    let userType = ""
+
+    if(userFound){
+       userType = "customer"
+
+    }else{
+       const userFound = await teachersModel.findOne({ email });
+       if(userFound){
+       userType = "teacher"
+    }
+    }
+
     if (!userFound) {
       return res.status(404).json({ message: "user not found" });
     }
@@ -29,11 +42,11 @@ recoveryPasswordController.requestCode = async (req, res) => {
     //Guardamos todo en un token
     const token = jsonbwebtoken.sign(
       //#1- ¿que vamos a guardar?
-      { email, randomCode, userType: "customer", verified: false },
+      { email, randomCode, userType: userType, verified: false },
       //#2- Secreat key
       config.JWT.secret,
       //#3- Cuando expira
-      { expiresIn: "15m" },
+      { expiresIn: "30d" },
     );
 
     res.cookie("recoveryCookie", token, { maxAge: 15 * 60 * 1000 });
@@ -107,6 +120,8 @@ recoveryPasswordController.verifyCode = async (req, res) => {
   }
 };
 
+
+
 recoveryPasswordController.newPassword = async (req, res) => {
   try {
     //#1- Solicito los datos
@@ -125,6 +140,7 @@ recoveryPasswordController.newPassword = async (req, res) => {
       return res.status(400).json({ message: "code not virified" });
     }
 
+    /////
     //Encriptar la contraseña
     const passwordHash = await bcrypt.hash(newPassword, 10);
 
