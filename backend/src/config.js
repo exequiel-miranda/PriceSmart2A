@@ -21,6 +21,12 @@ export const config = {
         cloudinary_name: process.env.CLOUDINARY_CLOUD_NAME,
         cloudinary_api_key: process.env.CLOUDINARY_API_KEY,
         cloudinary_api_secret: process.env.CLOUDINARY_API_SECRET
+    },
+    wompi:{
+        grant_type: process.env.GRANT_TYPE,
+        audience: process.env.AUDIENCE,
+        client_id: process.env.CLIENT_ID,
+        client_secret: process.env.CLIENT_SECRET
     }
 }
 
