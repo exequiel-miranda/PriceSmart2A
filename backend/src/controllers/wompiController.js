@@ -4,7 +4,7 @@ import { config } from "../config.js";
 //Array de funciones
 const wompiController = {};
 
-
+//Generar token
 wompiController.generarToken = async (req, res) => {
   try {
     const response = await fetch("https://id.wompi.sv/connect/token", {
@@ -33,6 +33,7 @@ wompiController.generarToken = async (req, res) => {
   }
 };
 
+//TRANSACCIÓN DE PRUEBA
 wompiController.paymentTest = async (req, res) => {
   try {
     //#1- Solicito los datos
@@ -45,7 +46,7 @@ wompiController.paymentTest = async (req, res) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Autorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(formData),
       },
@@ -64,6 +65,7 @@ wompiController.paymentTest = async (req, res) => {
   }
 };
 
+//TRANSACCIÓN REAL
 //Endpoint para el pago real con tarjeta
 //se pueden hacer pruebas con datos de 0.01 de dinero
 wompiController.payment3ds = async (req, res) => {
@@ -74,7 +76,7 @@ wompiController.payment3ds = async (req, res) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Autorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(formData),
     });

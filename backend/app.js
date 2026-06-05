@@ -14,6 +14,7 @@ import cors from "cors";
 import providerRoutes from "./src/routes/providers.js";
 import cartRoutes from "./src/routes/cart.js";
 import wompiRoutes from "./src/routes/wompi.js";
+import deliveryDriverRoute from "./src/routes/deliveryDriver.js"
 
 const app = express();
 
@@ -42,5 +43,6 @@ app.use("/api/recoveryPassword", recoveryPasswordRoutes);
 app.use("/api/providers", providerRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/wompi", wompiRoutes);
+app.use("/api/deliveryDrivers", deliveryDriverRoute)
 
 export default app;
